@@ -54,8 +54,8 @@ body {
   gap: 1px;
 }
 
-.rules,
-.play {
+.button_rules,
+.button_play {
   height: 52px;
   cursor: pointer;
   text-decoration: none;
@@ -66,15 +66,15 @@ body {
   align-items: center;
 }
 
-.rules:hover {
+.button_rules:hover {
   background-color: #1cbb96;
 }
 
-.play {
+.button_play {
   background-color: #0197f6;
 }
 
-.play:hover {
+.button_play:hover {
   background-color: #0090e9;
 }
 
