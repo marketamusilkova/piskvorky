@@ -9,7 +9,7 @@ body {
   height: 100vh;
 }
 
-.backround {
+.background {
   background-image: linear-gradient(to bottom, #615dad, #ffc8da);
   background-repeat: no-repeat;
   display: flex;
@@ -17,6 +17,7 @@ body {
   align-items: center;
   width: 100%;
   height: 100%;
+  background-attachment: fixed;
 }
 
 .container {
