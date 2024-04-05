@@ -6,10 +6,6 @@
 }
 
 body {
-  min-height: 100vh;
-}
-
-.background {
   background-image: linear-gradient(to bottom, #615dad, #ffc8da);
   background-repeat: no-repeat;
   display: flex;
