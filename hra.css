@@ -90,10 +90,26 @@ body {
 }
 
 .square:hover {
-  filter: brightness(80%); 
+  filter: brightness(80%);
   cursor: pointer;
 }
 
 .square:focus {
-  background-color: rgb(211, 109, 217);
+  background-color: rgb(237, 173, 241);
 }
+
+.playground__square--circle {
+  background-image: url('pictures/circle_black.svg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 77%;
+}
+
+.playground__square--cross {
+  background-image: url('pictures/cross_black.svg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 77%;
+}
+
+
