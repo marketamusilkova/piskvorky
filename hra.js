@@ -26,3 +26,9 @@ document.querySelector('button:nth-child(9)').addEventListener("click", addCircl
 document.querySelector('button:nth-child(10)').addEventListener("click", addCircle)
 
 
+document.querySelector(".button_restart").addEventListener("click", (e) => {
+  if (!confirm("Opravdu chceš začít hrát znovu?")) {
+    e.preventDefault()
+  }
+})
+
