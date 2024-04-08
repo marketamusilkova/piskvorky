@@ -103,6 +103,7 @@ body {
   background-position: center;
   background-repeat: no-repeat;
   background-size: 77%;
+  animation: zoomIn 0.2s ease;
 }
 
 .playground__square--cross {
@@ -110,6 +111,15 @@ body {
   background-position: center;
   background-repeat: no-repeat;
   background-size: 77%;
+  animation: zoomIn 0.2s ease;
 }
 
+@keyframes zoomIn {
+  from {
+    transform: scale(0.4);
+  }
 
+  to {
+    transform: scale(1);
+  }
+}
