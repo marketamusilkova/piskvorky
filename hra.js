@@ -1,3 +1,5 @@
+import { findWinner } from 'https://unpkg.com/piskvorky@0.1.4';
+
 let currentPlayer = 'circle';
 
 const addIcon = (e) => {
@@ -13,39 +15,34 @@ const addIcon = (e) => {
   }
 };
 
-document
-  .querySelector('button:nth-child(1)')
-  .addEventListener('click', addIcon);
-document
-  .querySelector('button:nth-child(2)')
-  .addEventListener('click', addIcon);
-document
-  .querySelector('button:nth-child(3)')
-  .addEventListener('click', addIcon);
-document
-  .querySelector('button:nth-child(4)')
-  .addEventListener('click', addIcon);
-document
-  .querySelector('button:nth-child(5)')
-  .addEventListener('click', addIcon);
-document
-  .querySelector('button:nth-child(6)')
-  .addEventListener('click', addIcon);
-document
-  .querySelector('button:nth-child(7)')
-  .addEventListener('click', addIcon);
-document
-  .querySelector('button:nth-child(8)')
-  .addEventListener('click', addIcon);
-document
-  .querySelector('button:nth-child(9)')
-  .addEventListener('click', addIcon);
-document
-  .querySelector('button:nth-child(10)')
-  .addEventListener('click', addIcon);
+const buttonsElm = document.querySelectorAll('.square');
+buttonsElm.forEach((button) => {
+  button.addEventListener('click', addIcon);
+});
 
 document.querySelector('.button_restart').addEventListener('click', (e) => {
   if (!confirm('Opravdu chceš začít hrát znovu?')) {
     e.preventDefault();
   }
 });
+
+buttonsElm.forEach((button) => {
+  button.addEventListener('click', () => {
+    const herniPole = Array.from(buttonsElm).map((policko) => {
+      if (policko.classList.contains('playground__square--circle')) {
+        return 'o';
+      } else if (policko.classList.contains('playground__square--cross')) {
+        return 'x';
+      } else {
+        return '_';
+      }
+    });
+
+    const vitez = findWinner(herniPole);
+    if (vitez === 'o' || vitez === 'x') {
+      alert(`Vyhrál hráč se symbolem ${vitez}.`);
+      location.reload()
+    }
+  });
+});
+
