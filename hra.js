@@ -51,3 +51,54 @@ document.querySelector('.button_restart').addEventListener('click', (e) => {
     e.preventDefault();
   }
 });
+
+
+
+// DRUHÉ MALINKO JINÉ ŘEŠENÍ:
+
+// let currentPlayer = 'circle';
+// const buttonsElm = document.querySelectorAll('.square');
+
+// const addIcon = (e) => {
+//   e.target.disabled = true;
+//   if (currentPlayer === 'circle') {
+//     e.target.classList.add('playground__square--circle');
+//     currentPlayer = 'cross';
+//     document.getElementById('who').src = 'pictures/cross.svg';
+//     document.getElementById('who').alt = 'křížek';
+//   } else {
+//     e.target.classList.add('playground__square--cross');
+//     currentPlayer = 'circle';
+//     document.getElementById('who').src = 'pictures/circle.svg';
+//     document.getElementById('who').alt = 'kolečko';
+//   }
+// };
+
+// buttonsElm.forEach((button) => {
+//   button.addEventListener('click', addIcon);
+// });
+
+// buttonsElm.forEach((button) => {
+//   button.addEventListener('click', () => {
+//     const herniPole = Array.from(buttonsElm).map((policko) => {
+//       if (policko.classList.contains('playground__square--circle')) {
+//         return 'o';
+//       } else if (policko.classList.contains('playground__square--cross')) {
+//         return 'x';
+//       } else {
+//         return '_';
+//       }
+//     });
+
+//     const vitez = findWinner(herniPole);
+//     const vypisViteze = () => {
+//       if (vitez === 'o' || vitez === 'x') {
+//         alert(`Vyhrál hráč se symbolem ${vitez}.`);
+//         location.reload();
+//       }
+//     };
+
+//     setTimeout(vypisViteze, 400)
+//   });
+// });
+
