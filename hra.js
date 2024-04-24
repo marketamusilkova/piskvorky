@@ -3,7 +3,7 @@ import { findWinner } from 'https://unpkg.com/piskvorky@0.1.4';
 let currentPlayer = 'circle';
 const gameBoxes = document.querySelectorAll('.square');
 
-const addIcon = (e) => {
+const addIcon = async (e) => {
   const button = e.target;
   const playerSymbol = document.querySelector('#who');
   e.target.disabled = true;
@@ -29,17 +29,55 @@ const addIcon = (e) => {
     }
   });
 
-  const returnWinner = () => {
-    const winner = findWinner(gameField);
-    if (winner === 'o' || winner === 'x') {
+  const winner = findWinner(gameField);
+  if (winner === 'o' || winner === 'x') {
+    setTimeout(() => {
       alert(`Vyhrál hráč se symbolem "${winner.toUpperCase()}"!`);
       location.reload();
-    } else if (winner === 'tie') {
-      alert('Hra skončila nerozhodně.');
-    }
-  };
+    }, 300);
+  } else if (winner === 'tie') {
+    setTimeout(() => {
+      alert(`Hra skončila nerozhodně!`);
+      location.reload();
+    }, 300);
+  } else {
+    if (currentPlayer === 'cross') {
+      gameBoxes.forEach((gameBox) => {
+        gameBox.disabled = true;
+      });
 
-  setTimeout(returnWinner, 400);
+      const response = await fetch(
+        'https://piskvorky.czechitas-podklady.cz/api/suggest-next-move',
+        {
+          method: 'POST',
+          headers: {
+            'Content-type': 'application/json',
+          },
+          body: JSON.stringify({
+            board: gameField,
+            player: 'x',
+          }),
+        },
+      );
+
+      const data = await response.json();
+      const { x, y } = data.position;
+      const index = gameBoxes[x + y * 10];
+
+      gameBoxes.forEach((gameBox) => {
+        if (
+          gameBox.classList.contains('playground__square--circle') ||
+          gameBox.classList.contains('playground__square--cross')
+        ) {
+          gameBox.disabled = true;
+        } else {
+          gameBox.disabled = false;
+        }
+      });
+      
+      index.click();
+    }
+  }
 };
 
 gameBoxes.forEach((box) => {
@@ -52,9 +90,7 @@ document.querySelector('.button_restart').addEventListener('click', (e) => {
   }
 });
 
-
-
-// DRUHÉ MALINKO JINÉ ŘEŠENÍ:
+// DRUHÉ MALINKO JINÉ ŘEŠENÍ (ještě bez volání API):
 
 // let currentPlayer = 'circle';
 // const buttonsElm = document.querySelectorAll('.square');
@@ -101,4 +137,3 @@ document.querySelector('.button_restart').addEventListener('click', (e) => {
 //     setTimeout(vypisViteze, 400)
 //   });
 // });
-
