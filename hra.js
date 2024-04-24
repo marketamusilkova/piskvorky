@@ -19,7 +19,8 @@ const addIcon = async (e) => {
     playerSymbol.setAttribute('alt', 'kolečko');
   }
 
-  const gameField = [...gameBoxes].map((item) => {
+  const gameFieldElms = Array.from(gameBoxes)
+  const gameField = gameFieldElms.map((item) => {
     if (item.classList.contains('playground__square--circle')) {
       return 'o';
     } else if (item.classList.contains('playground__square--cross')) {
@@ -28,6 +29,17 @@ const addIcon = async (e) => {
       return '_';
     }
   });
+
+  // DRUHÁ VERZE VYTVOŘENÍ POLE:
+  // const gameField = [...gameBoxes].map((item) => {
+  //   if (item.classList.contains('playground__square--circle')) {
+  //     return 'o';
+  //   } else if (item.classList.contains('playground__square--cross')) {
+  //     return 'x';
+  //   } else {
+  //     return '_';
+  //   }
+  // });
 
   const winner = findWinner(gameField);
   if (winner === 'o' || winner === 'x') {
